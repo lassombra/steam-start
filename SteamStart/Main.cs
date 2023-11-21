@@ -1,9 +1,12 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
+using DV.ThingTypes;
+using DV.ThingTypes.TransitionHelpers;
 using HarmonyLib;
 using UnityModManagerNet;
 
-namespace MOD_NAME;
+namespace SteamStart;
 
 public static class Main
 {
@@ -17,7 +20,7 @@ public static class Main
 			harmony = new Harmony(modEntry.Info.Id);
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-			// Other plugin startup logic
+			PatchLicenseList();
 		}
 		catch (Exception ex)
 		{
@@ -27,5 +30,16 @@ public static class Main
 		}
 
 		return true;
+	}
+	private static void PatchLicenseList()
+	{
+		var licenseManagerType = typeof(LicenseManager);
+		var licenseGeneralLicensesField = licenseManagerType.GetField("TutorialGeneralLicenses");
+		licenseGeneralLicensesField.SetValue(null, new List<GeneralLicenseType_v2>
+			{
+				GeneralLicenseType.TrainDriver.ToV2(),
+				GeneralLicenseType.S060.ToV2()
+			});
+		GeneralLicenseType.DE2.ToV2().price = 20000f;
 	}
 }
