@@ -1,9 +1,14 @@
 {
 	"Releases": [
 		{
-			"Id": "MOD_NAME",
+			"Id": "SteamStart",
 			"Version": "1.0.0",
 			"DownloadUrl": "https://github.com/lassombra/steam-start/releases/download/1.0.0/SteamStart.zip"
+		},
+		{
+			"Id": "SteamStart",
+			"Version": "1.1.0",
+			"DownloadUrl": "https://github.com/lassombra/steam-start/releases/download/1.1.0/SteamStart_v1.1.0.zip"
 		}
 	]
 }
