@@ -32,7 +32,7 @@ public static class Main
 				GeneralLicenseType.TrainDriver.ToV2(),
 				GeneralLicenseType.S060.ToV2()
 			});
-		GeneralLicenseType.DE2.ToV2().price = 200f;
+		GeneralLicenseType.DE2.ToV2().price = 20000f;
 		foreach (var expandedItem in Globals.G.Items.expandedStartingItems)
 		{
 			if (itemPrefabs.Contains(expandedItem.ItemPrefabName))
