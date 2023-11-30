@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SteamStart", "SteamStart\St
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09CE5A20-5C44-4B6E-8D29-178D3D95383A}"
 	ProjectSection(SolutionItems) = preProject
+		info.json = info.json
 		package.ps1 = package.ps1
+		repository.json = repository.json
 	EndProjectSection
 EndProject
 Global
