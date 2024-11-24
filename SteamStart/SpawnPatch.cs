@@ -11,7 +11,7 @@ namespace SteamStart
 {
 	[HarmonyPatch(typeof(CarSpawner), "SpawnCarTypesOnTrack")]
 	[HarmonyPriority(Priority.LowerThanNormal)]
-	internal class Patch
+	internal class SpawnPatch
 	{
 		private static List<TrainCarLivery> S060liveries = new List<TrainCarLivery>();
 

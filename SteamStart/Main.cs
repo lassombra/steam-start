@@ -33,20 +33,12 @@ public static class Main
 				GeneralLicenseType.S060.ToV2()
 			});
 		GeneralLicenseType.DE2.ToV2().price = 20000f;
-		foreach (var expandedItem in Globals.G.Items.expandedStartingItems)
-		{
-			if (itemPrefabs.Contains(expandedItem.ItemPrefabName))
-			{
-				Globals.G.Items.basicStartingItems.Add(expandedItem);
-			}
-		}
 	}
 	private static void UnpatchStartupLicensesAndItems()
 	{
 		var licenseManagerType = typeof(LicenseManager);
 		var licenseGeneralLicensesField = licenseManagerType.GetField("TutorialGeneralLicenses");
 		licenseGeneralLicensesField.SetValue(null, previousLIcenses);
-		Globals.G.Items.basicStartingItems.RemoveAll(item => itemPrefabs.Contains(item.ItemPrefabName));
 	}
 	static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
 	{
