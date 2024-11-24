@@ -22,6 +22,10 @@
 
 	<!-- Mod Loader -->
 	<ItemGroup>
+		<PackageReference Include="Krafs.Publicizer" Version="2.2.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="UnityModManager" Version="0.27.2" />
 	</ItemGroup>
 
@@ -32,6 +36,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Properties\" />
+	</ItemGroup>
+
+	<!-- Publicizer config-->
+	<ItemGroup>
+		<Publicize Include="Assembly-CSharp.dll:ItemsConfig" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
