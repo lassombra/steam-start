@@ -27,11 +27,8 @@ public static class Main
 		var licenseManagerType = typeof(LicenseManager);
 		var licenseGeneralLicensesField = licenseManagerType.GetField("TutorialGeneralLicenses");
 		previousLIcenses = LicenseManager.TutorialGeneralLicenses;
-		licenseGeneralLicensesField.SetValue(null, new List<GeneralLicenseType_v2>
-			{
-				GeneralLicenseType.TrainDriver.ToV2(),
-				GeneralLicenseType.S060.ToV2()
-			});
+		LicenseManager.TutorialGeneralLicenses.RemoveAll(license => license.v1 == GeneralLicenseType.DE2);
+		LicenseManager.TutorialGeneralLicenses.Add(GeneralLicenseType.S060.ToV2());
 		GeneralLicenseType.DE2.ToV2().price = 20000f;
 	}
 	private static void UnpatchStartupLicensesAndItems()
