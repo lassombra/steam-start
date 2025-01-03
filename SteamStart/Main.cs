@@ -24,8 +24,6 @@ public static class Main
 	}
 	private static void PatchStartupLicensesAndItems()
 	{
-		var licenseManagerType = typeof(LicenseManager);
-		var licenseGeneralLicensesField = licenseManagerType.GetField("TutorialGeneralLicenses");
 		previousLIcenses = LicenseManager.TutorialGeneralLicenses;
 		LicenseManager.TutorialGeneralLicenses.RemoveAll(license => license.v1 == GeneralLicenseType.DE2);
 		LicenseManager.TutorialGeneralLicenses.Add(GeneralLicenseType.S060.ToV2());
