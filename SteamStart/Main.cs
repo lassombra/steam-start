@@ -28,12 +28,14 @@ public static class Main
 		LicenseManager.TutorialGeneralLicenses.RemoveAll(license => license.v1 == GeneralLicenseType.DE2);
 		LicenseManager.TutorialGeneralLicenses.Add(GeneralLicenseType.S060.ToV2());
 		GeneralLicenseType.DE2.ToV2().price = 20000f;
+		GeneralLicenseType.S060.ToV2().price = 0f;
 	}
 	private static void UnpatchStartupLicensesAndItems()
 	{
-		var licenseManagerType = typeof(LicenseManager);
-		var licenseGeneralLicensesField = licenseManagerType.GetField("TutorialGeneralLicenses");
-		licenseGeneralLicensesField.SetValue(null, previousLIcenses);
+		LicenseManager.TutorialGeneralLicenses.RemoveAll(license => license.v1 == GeneralLicenseType.S060);
+		LicenseManager.TutorialGeneralLicenses.Add(GeneralLicenseType.DE2.ToV2());
+		GeneralLicenseType.S060.ToV2().price = 20000f;
+		GeneralLicenseType.DE2.ToV2().price = 0f;
 	}
 	static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
 	{
