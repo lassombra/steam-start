@@ -14,6 +14,11 @@
 			"Id": "SteamStart",
 			"Version": "1.2.0",
 			"DownloadUrl": "https://github.com/lassombra/steam-start/releases/download/1.2.0/SteamStart_v1.2.0.zip"
+		},
+		{
+			"Id": "SteamStart",
+			"Version": "1.2.1",
+			"DownloadUrl": "https://github.com/lassombra/steam-start/releases/download/1.2.0/SteamStart_v1.2.1.zip"
 		}
 	]
 }
