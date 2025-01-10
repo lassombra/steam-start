@@ -12,6 +12,7 @@
 		<Reference Include="Assembly-CSharp" />
 		<Reference Include="DV.ThingTypes" />
 		<Reference Include="DV.Utils" />
+		<Reference Include="Newtonsoft.JSON" />
 	</ItemGroup>
 
 	<!-- Unity -->
@@ -40,7 +41,7 @@
 
 	<!-- Publicizer config-->
 	<ItemGroup>
-		<Publicize Include="Assembly-CSharp.dll:ItemsConfig" />
+		<Publicize Include="Assembly-CSharp" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

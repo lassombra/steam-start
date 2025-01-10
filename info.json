@@ -1,6 +1,6 @@
 {
 	"Id": "SteamStart",
-	"Version": "1.2.0",
+	"Version": "1.2.1",
 	"DisplayName": "Steam Start",
 	"Author": "lassombra",
 	"EntryMethod": "SteamStart.Main.Load",

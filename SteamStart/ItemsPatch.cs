@@ -6,45 +6,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using static DV.Items.StartingItems;
 
 namespace SteamStart
 {
-	[HarmonyPatch(typeof(StartingItems))]
+	[HarmonyPatch]
 	internal class ItemsPatch
 	{
-		private static string[] excludes = new string[] { "HandheldGameConsole", "Boombox", "RemoteController", "Flashlight" };
+		private static readonly string[] includes = new string[] { "Lantern", "EOTLantern", "Oiler", "lighter", "shovel" };
+		private static List<StartingItem> items = new List<StartingItem>();
 
-		[HarmonyPatch(nameof(StartingItems.GetStartingItems))]
+		[HarmonyPatch(typeof(StartingItemsController), nameof(StartingItemsController.AddStartingItems))]
 		[HarmonyPrefix]
-		public static bool PatchGetStartingItems(StartingItems __instance, ref List<StartingItem> __result)
+		public static void PatchGetStartingItems()
 		{
-			if (__instance.startingItemsType == GameParams.StartingItemsType.Basic)
-			{
-				__result = ExpandedStartingItems;
-				return false;
-			}
-			return true;
-		}
-
-		private static List<StartingItem>? startingItems = null;
-		private static List<StartingItem> ExpandedStartingItems
-		{ get {
-				if (startingItems == null)
+			Main.Logger?.Log($"Patch get starting items");
+			items.Clear();
+			var basic = (from i in DV.Globals.G.Items.startingItems
+						 where i.startingItemsType == GameParams.StartingItemsType.Basic
+						 select i).First();
+			var expanded = (from i in DV.Globals.G.Items.startingItems
+							where i.startingItemsType == GameParams.StartingItemsType.Expanded
+							select i).First();
+			Main.Logger?.Log($"{basic.items.Count} - {expanded.items.Count}");
+			foreach (var i in expanded.items) {
+				if (includes.Contains(i.ItemPrefabName) && !basic.items.Contains(i))
 				{
-					Main.Logger?.Log("Loading starting items");
-					startingItems = Globals.G.Items.GetStartingItemsAsset(GameParams.StartingItemsType.Expanded).GetStartingItems().ToList();
-					Main.Logger?.Log("Starting Items Loaded: " + startingItems.Count);
-					startingItems = (from i in startingItems
-									where !excludes.Contains(i.ItemPrefabName)
-									select i).ToList();
-					foreach (var item in startingItems)
-					{
-						Main.Logger?.Log("Item in starting items: " + item.ItemPrefabName);
-					}
+					items.Add(i);
 				}
-				return startingItems.ToList();
-			}
+			};
+			basic.items.AddRange(items);
+			expanded.items.RemoveAll(i => !items.Contains(i));
 		}
 	}
 }
