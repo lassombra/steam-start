@@ -10,6 +10,7 @@
 	<!-- Derail Valley -->
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp" />
+		<Reference Include="DV.RailTrack"/>
 		<Reference Include="DV.ThingTypes" />
 		<Reference Include="DV.Utils" />
 		<Reference Include="Newtonsoft.JSON" />
@@ -39,7 +40,7 @@
 	  <Folder Include="Properties\" />
 	</ItemGroup>
 
-	<!-- Publicizer config-->
+	 <!--Publicizer config-->
 	<ItemGroup>
 		<Publicize Include="Assembly-CSharp" />
 	</ItemGroup>
